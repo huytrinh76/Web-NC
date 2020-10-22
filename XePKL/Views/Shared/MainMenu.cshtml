@@ -1,0 +1,45 @@
+﻿@model List<Modell.EF.Menu>
+    <div class="menu">
+        @foreach (var item in Model)
+        {
+        <ul class="megamenu skyblue">
+            <li><a href="@item.Link" target="@item.Target">@item.Text</a></li>
+        </ul>
+        }
+                <!--
+            <ul class="megamenu skyblue">
+
+                <li>
+                    <a class="color4" href="#">Products</a>
+                    <div class="megapanel">
+                        <div class="row">
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>Dòng xe</h4>
+                                    <ul>
+                                        <li><a href="womens.html">Sport (Thể thao)</a></li>
+                                        <li><a href="womens.html">Naked (đi trong thành phố)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col1">
+                                <div class="h_nav">
+                                    <h4>Thương hiệu</h4>
+                                    <ul>
+                                        <li><a href="womens.html">Ducati</a></li>
+                                        <li><a href="womens.html">Yamaha</a></li>
+                                        <li><a href="womens.html">BMW</a></li>
+                                        <li><a href="womens.html">Honda</a></li>
+                                        <li><a href="womens.html">KTM</a></li>
+                                        <li><a href="womens.html">Aprilia</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a class="color6" href="other.html">Phụ tùng</a></li>
+                <li><a class="color7" href="other.html">Đồ chơi</a></li>
+            </ul>
+                -->
+        </div>

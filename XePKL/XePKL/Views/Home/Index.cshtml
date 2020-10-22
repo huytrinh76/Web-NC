@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var slides = (List<Modell.EF.Slide>)ViewBag.Slides;
+    var listNewProducts = (List<Modell.EF.Product>)ViewBag.NewProduct;
+    var listFeatureProducts = (List<Modell.EF.Product>)ViewBag.ListFeatureProduct;
+}
+@section slide
+{
+    <div id="fwslider">
+        <div class="slider_container">
+            <div class="slide">
+                <!-- Slide image -->
+                <img src="~/Assets/client/images/wallpaperflare.com_wallpaper.jpg" alt="" />
+                <!-- /Slide image -->
+                <!-- Texts container -->
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <!-- Text title -->
+                        <h4 class="title">SPORT BIKE</h4>
+                        <!-- /Text title -->
+                        <!-- Text description -->
+                        <p class="description">Thuần thể thao (Sport)</p>
+                        <!-- /Text description -->
+                    </div>
+                </div>
+                <!-- /Texts container -->
+            </div>
+            <!-- /Duplicate to create more slides -->
+            <div class="slide">
+                <img src="~/Assets/client/images/wallpaperflare.com_wallpaper-3.jpg" alt="" />
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <h4 class="title">NAKED BIKE</h4>
+                        <p class="description">Khuynh hướng thành phố (Sport city)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="~/Assets/client/images/wallpaperflare.com_wallpaper-1.jpg" alt="" />
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <h4 class="title">SPORT BIKE</h4>
+                        <p class="description">Thuần thể thao (Sport)</p>
+                    </div>
+                </div>
+            </div>
+            <!--/slide -->
+        </div>
+        <div class="timers"></div>
+        <div class="slidePrev"><span></span></div>
+        <div class="slideNext"><span></span></div>
+    </div>
+
+}
+<div class="wrap">
+    <div class="section group">
+        <div class="cont span_2_of_3">
+            <h2 class="head">Sản phẩm bán chạy</h2>
+            <div class="top-box">
+                @foreach (var item in listNewProducts)
+                {
+                    var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                <div class="col_1_of_3 span_1_of_3">
+                    <a href="@url">
+                        <div class="inner_content clearfix">
+                            <div class="product_image">
+                                <img src="@item.Image" alt="@item.Name" />
+                            </div>
+                            <div class="sale-box"><span class="on_sale title_shop">New</span></div>
+                            <div class="price">
+                                <div class="cart-left">
+                                    <p class="title">@item.Name</p>
+                                    <div class="price1">
+                                        <span class="actual">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</span>
+                                    </div>
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="cart-right">
+                        <a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm giỏ</a>
+                    </div>
+                </div>
+                }
+
+                <div class="clear"></div>
+            </div>
+
+            <h2 class="head">Sản phẩm Hot</h2>
+            <div class="top-box1">
+                @foreach (var item in listFeatureProducts)
+                {
+                    var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                <div class="col_1_of_3 span_1_of_3">
+                    <a href="@url">
+                        <div class="inner_content clearfix">
+                            <div class="product_image">
+                                <img src="@item.Image" alt="@item.Name" />
+                            </div>
+                            <div class="sale-box"><span class="on_sale title_shop">New</span></div>
+                            <div class="price">
+                                <div class="cart-left">
+                                    <p class="title">@item.Name</p>
+                                    <div class="price1">
+                                        <span class="actual">@(item.Price.HasValue?item.Price.Value.ToString("N0"):"Liên hệ")</span>
+                                    </div>
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="cart-right">
+                        <a href="/them-gio-hang?productId=@item.ID&quantity=1">Thêm giỏ</a>
+                    </div>
+                </div>
+                }
+                <div class="clear"></div>
+            </div>
+            <h2 class="head">Sản phẩm mới</h2>
+            <div class="section group">
+                <div class="col_1_of_3 span_1_of_3">
+                    <a href="single.html">
+                        <div class="inner_content clearfix">
+                            <div class="product_image">
+                                <img src="~/Assets/client/images/pic5.jpg" alt="" />
+                            </div>
+                            <div class="sale-box"><span class="on_sale title_shop">New</span></div>
+                            <div class="price">
+                                <div class="cart-left">
+                                    <p class="title">Lorem Ipsum simply</p>
+                                    <div class="price1">
+                                        <span class="actual">$12.00</span>
+                                    </div>
+                                </div>
+                                <div class="cart-right"> </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col_1_of_3 span_1_of_3">
+                    <a href="single.html">
+                        <div class="inner_content clearfix">
+                            <div class="product_image">
+                                <img src="~/Assets/client/images/pic2.jpg" alt="" />
+                            </div>
+                            <div class="sale-box"><span class="on_sale title_shop">New</span></div>
+                            <div class="price">
+                                <div class="cart-left">
+                                    <p class="title">Lorem Ipsum simply</p>
+                                    <div class="price1">
+                                        <span class="actual">$12.00</span>
+                                    </div>
+                                </div>
+                                <div class="cart-right"> </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col_1_of_3 span_1_of_3">
+                    <a href="single.html">
+                        <div class="inner_content clearfix">
+                            <div class="product_image">
+                                <img src="~/Assets/client/images/pic3.jpg" alt="" />
+                            </div>
+                            <div class="sale-box"><span class="on_sale title_shop">New</span></div>
+                            <div class="price">
+                                <div class="cart-left">
+                                    <p class="title">Lorem Ipsum simply</p>
+                                    <div class="price1">
+                                        <span class="actual">$12.00</span>
+                                    </div>
+                                </div>
+                                <div class="cart-right"> </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="rsingle span_1_of_single">
+           
+            @{ Html.RenderAction("ProductCategory", "Product");}
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>

@@ -1,0 +1,101 @@
+﻿@model List<Modell.EF.Product>
+@{
+    var category = (Modell.EF.DanhmucSP)ViewBag.Category;
+    ViewBag.Title = category.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="wrap">
+    <div class="section group">
+        <div class="cont span_2_of_3">
+            <h2 class="head">@category.Name</h2>
+            <div class="top-box">
+                @foreach (var item in Model)
+                {
+                    var link = "chi-tiet" + item.MetaTitle + "-" + item.ID;
+                    <div class="col_1_of_3 span_1_of_3">
+                        <a href="@link">
+                            <div class="inner_content clearfix">
+                                <div class="product_image">
+                                    <img src="@item.Image" alt="" />
+                                </div>
+                                <div class="sale-box"><span class="on_sale title_shop">New</span></div>
+                                <div class="price">
+                                    <div class="cart-left">
+                                        <p class="title">@item.Name</p>
+                                        <div class="price1">
+                                            <span class="actual">@(item.Price.HasValue ? item.Price.Value.ToString("N0"):"Liên hệ")</span>
+                                        </div>
+                                    </div>
+                                    <div class="cart-right"><a href="/gio-hang/@item.ID">Thêm vào giỏ</a></div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+                <div class="clear"></div>
+            </div>
+            <div class="top-box">
+
+                <div class="clear"></div>
+            </div>
+
+        </div>
+        <div class="rsingle span_1_of_single">
+
+            @{ Html.RenderAction("ProductCategory", "Product");}
+        </div>
+        @if(ViewBag.TotalPage > 1)
+        {
+            var pageDisplay = (int)ViewBag.MaxPage;
+            int totalPage = (int)ViewBag.TotalPage;
+            int currentPage = ((int)ViewBag.Page);
+
+            var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+            var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+            var link = "/san-pham" + category.MetaTitle + "-" + category.ID;
+    <nav>
+        <ul class="pagination">
+            @if (currentPage > ViewBag.First)
+            {
+                <li> <a href="@link?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a></li>
+
+                <li><a href="@link?page=@ViewBag.First" title="Trang sau" class="prev"><i class="fa fa-angle-double-right"></i></a></li>
+            }
+            @for (int i = startPageIndex; i <= endPageIndex; i++)
+            {
+                if (currentPage == i)
+                {
+                    <li>
+                        <a href="@link?page=@i" title="Trang @i" class="Trang @i">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@link?page=@i" title="Trang @i" class="pos">@i</a>
+                    </li>
+                }
+            }
+            @if (currentPage < totalPage)
+            {
+                <li>
+                    <a href="@link?page=@ViewBag.Next" title="Trang sau" class="next"><i class="fa fa-angle-right"></i></a>
+                </li>
+                <li>
+                <a href="@link?page=@ViewBag.Last" title="Trang cuối" class="last"><i class="fa fa-angle-double-right"></i></a></li>
+            }
+        </ul>
+    </nav>
+  
+        }
+        else
+        {
+            <span>Không có bản ghi</span>
+        }
+        <div class="clear"></div>
+    </div>
+</div>
