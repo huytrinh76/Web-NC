@@ -109,7 +109,7 @@ namespace Modell.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.ShipMoblie)
+                .Property(e => e.ShipMobile)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()

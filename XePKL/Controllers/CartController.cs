@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using XePKL.Models;
 using System.Web.Script.Serialization;
+using Modell.EF;
 
 namespace XePKL.Controllers
 {
@@ -104,6 +105,7 @@ namespace XePKL.Controllers
             }
             return RedirectToAction("Index");
         }
+        [HttpGet]
         public ActionResult Payment()
         {
             var cart = Session[CartSession];
@@ -114,5 +116,44 @@ namespace XePKL.Controllers
             }
             return View(list);
         }
+        [HttpPost]
+        public ActionResult Payment(string shipName, string mobile, string address, string email)
+        {
+            var order = new Order();
+            order.CreatedDate = DateTime.Now;
+            order.ShipAddress = address;
+            order.ShipMobile = mobile;
+            order.ShipAddress = address;
+            order.ShipName = shipName;
+            order.ShipEmail = email;
+
+            try
+            {
+                var id = new OrderDao().Insert(order);
+                var cart = (List<CartItem>)Session[CartSession];
+                var detailDao = new Modell.Dao.OrderDetailDao();
+                foreach (var item in cart)
+                {
+                    var orderDetail = new OrderDetail();
+                    orderDetail.ProductID = item.Product.ID;
+                    orderDetail.OrderID = id;
+                    orderDetail.Price = item.Product.Price;
+                    orderDetail.Quantity = item.Quantity;
+                    detailDao.Insert(orderDetail);
+
+                }
+            }
+            catch(Exception ex)
+            {
+                //ghi log
+                return Redirect("/loi-thanh-toan");
+            }
+            return Redirect("/hoan-thanh");
+        }
+        public ActionResult Success()
+        {
+            return View();
+        }
+
     }
 }
