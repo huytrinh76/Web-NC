@@ -27,13 +27,13 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                        <td>@item.Product.ID</td>
-                        <td>@item.Product.Name</td>
-                        <td><img src="@item.Product.Image" width="100" /></td>
-                        <td><input type="text" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity" /></td>
-                        <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
-                        <td>@((item.Product.Price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
-                        <td><a href="#" data-id="@item.Product.ID" class="btn-delete">Xóa</a></td>
+                            <td>@item.Product.ID</td>
+                            <td>@item.Product.Name</td>
+                            <td><img src="@item.Product.Image" width="100" /></td>
+                            <td><input type="text" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity" /></td>
+                            <td>@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                            <td>@((item.Product.Price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            <td><a href="#" data-id="@item.Product.ID" class="btn-delete">Xóa</a></td>
                         </tr>
                     }
 
@@ -51,6 +51,7 @@
             <p class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng</p>
         }
     </div>
+    <div class="clear"></div>
 </div>
 
             
